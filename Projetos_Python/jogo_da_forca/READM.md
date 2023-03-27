@@ -1,0 +1,1 @@
+## estundando funções e condicionais, Jogo da forca simples.
