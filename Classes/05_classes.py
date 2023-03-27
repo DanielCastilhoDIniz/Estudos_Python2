@@ -67,3 +67,4 @@ Aluno.consultar_pessoas()
 #     maior = None
 #     if alunos.media > maior:
 #         maior = alunos.media
+# em andamento....
