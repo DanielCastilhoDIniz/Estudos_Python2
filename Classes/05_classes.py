@@ -1,5 +1,4 @@
-"""_summary_
-
+"""
     . Crie uma classe representando os alunos de um determinado curso. A classe deve
 conter os atributos matrıcula do aluno, nome, nota da primeira prova, nota da segunda
 prova e nota da terceira prova. Crie metodos para acessar o nome e a méedia do aluno. 
@@ -11,60 +10,51 @@ prova e nota da terceira prova. Crie metodos para acessar o nome e a méedia do 
 salvar dados em JSON
 aprovação
 """
-import json
-caminho_arquivo = "05_b_classes.json"
 
-
-class Aluno():
-
-    todos_alunos = []
-
-    def __init__(self, nome, matricula, curso, nota1, nota2, nota3, media=None):
-        self.nome = nome
+class Aluno:
+    def __init__(self, matricula, nome, nota1, nota2, nota3):
         self.matricula = matricula
-        self.curso = curso
+        self.nome = nome
         self.nota1 = nota1
         self.nota2 = nota2
         self.nota3 = nota3
-        self.media = media
-        Aluno.todos_alunos.append(self)
+        self.media = self.calcular_media()
+
+    def calcular_media(self):
+        return (self.nota1 + self.nota2 + self.nota3) / 3
+
+    def get_nome(self):
+        return self.nome
+
+    def esta_aprovado(self):
+        return self.media >= 6
 
     def __str__(self):
-        return f"{self.nome} - {self.matricula} - {self.curso}"
-
-    @classmethod
-    def consultar_pessoas(cls):
-        for aluno in cls.todos_alunos:
-            print(aluno)
-            
-    def calcular_media(self):
-        self.media = (self.nota1 + self.nota2 + self.nota3)/3
-        return self.media
-
-    def adicionar_alunos_lista(self, aluno):
-        self.alunos.extend(aluno)
+        return f"Aluno: {self.nome}\nMatrícula: {self.matricula}\nMédia: {self.media:.2f}\n"
 
 
-# def mostrar_valores(*objs):
-#     for obj in objs:
-#         print(obj)
+if __name__ == "__main__":
+    alunos = []
 
+    for i in range(2):
+        matricula = input("Digite a matrícula do aluno: ")
+        nome = input("Digite o nome do aluno: ")
+        nota1 = float(input("Digite a nota da primeira prova: "))
+        nota2 = float(input("Digite a nota da segunda prova: "))
+        nota3 = float(input("Digite a nota da terceira prova: "))
 
-a1 = Aluno("Daniel", 1223456, "DAS", 7, 8, 7)
-a1.calcular_media()
-a1.adicionar_alunos_lista
-a2 = Aluno("Luiz", 1223450, "DAS", 9, 8, 9)
-a2.calcular_media()
-a2.adicionar_alunos_lista
-a3 = Aluno("Pedro", 1223450, "DAS", 9, 8, 9)
-a3.calcular_media()
-a3.adicionar_alunos_lista
+        aluno = Aluno(matricula, nome, nota1, nota2, nota3)
+        alunos.append(aluno)
 
-print(a1.media)
-Aluno.consultar_pessoas()
+    aluno_com_maior_media = max(alunos, key=lambda a: a.media)
+    aluno_com_menor_media = min(alunos, key=lambda a: a.media)
 
-# for aluno in alunos:
-#     maior = None
-#     if alunos.media > maior:
-#         maior = alunos.media
-# em andamento....
+    print("\nAluno com maior média:")
+    print(aluno_com_maior_media)
+
+    print("Aluno com menor média:")
+    print(aluno_com_menor_media)
+
+    for aluno in alunos:
+        status = "aprovado" if aluno.esta_aprovado() else "reprovado"
+        print(f"{aluno.nome} está {status}.")

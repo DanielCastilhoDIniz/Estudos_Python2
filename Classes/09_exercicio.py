@@ -56,3 +56,22 @@ motor_1_6 = Motor('Motor 1.6')
 siena.motor = motor_1_6
 
 print(siena.nome, siena.fabricante.nome, siena.motor.nome)
+
+
+
+""" 
+Explicando o códigos
+ste código cria três classes: Car, Motor e Fabricante. A classe Car tem atributos para o nome do carro, 
+o motor e o fabricante. O motor e o fabricante são definidos como atributos privados (_motor e _fabricante) 
+e são acessados por meio de propriedades com os decoradores @property e @setter. O método init é usado para inicializar os atributos do objeto.
+
+A classe Motor tem um único atributo, o nome do motor. A classe Fabricante também tem um único atributo, o nome do fabricante.
+
+No final do código, três objetos são criados: um objeto Car com o nome "Gol", um objeto Fabricante com o nome "volkswagen" e 
+um objeto Motor com o nome "Motor 1.0". O objeto Fabricante é atribuído ao atributo "fabricante" do objeto Car e 
+o objeto Motor é atribuído ao atributo "motor" do objeto Car.
+
+Finalmente, a impressão é usada para exibir o nome do carro, o nome do fabricante e o nome do motor. 
+A saída do código será: "Gol volkswagen Motor 1.0". Isso significa que o objeto Car chamado "Gol" foi fabricado pela Volkswagen e possui um motor chamado "Motor 1.0".
+
+"""

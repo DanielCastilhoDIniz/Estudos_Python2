@@ -37,4 +37,3 @@ carrinho = Carrinho()
 carrinho.inserir_produtos(p1, p2)
 carrinho.listar_produtos()
 
-print(carrinho.total())
