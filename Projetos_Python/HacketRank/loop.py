@@ -22,10 +22,10 @@ Output Format
 Print  lines, one corresponding to each .
 """
 
-if __name__ == '__main__':
-    n = int(input())
+# if __name__ == '__main__':
+#     n = int(input())
     
-    for i in range(n):
-        print(pow(i,2))
+#     for i in range(n):
+#         print(pow(i,2))
 
 
