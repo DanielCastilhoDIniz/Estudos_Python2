@@ -1,0 +1,20 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formulário CEP</title>
+</head>
+<body>
+    <h1>Formulário CEP</h1>
+    <form method="POST" action="/">
+        {{ form.csrf_token }}
+        {{ form.cep.label }} {{ form.cep(size=30) }}
+        <br>
+        {{ form.button_submit() }}
+    </form>
+
+    <h1>Resultado</h1>
+    <p>O CEP digitado foi: {{ cep }}</p>
+</body>
+</html>
+
