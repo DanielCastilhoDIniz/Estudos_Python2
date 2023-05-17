@@ -18,11 +18,10 @@ def home():
 
     if form.validate_on_submit():
         cep = form.cep.data
-        form.cep.data = ''
+
         return render_template('index.html', cep=cep)
 
     return render_template('index.html', form=form)
-
 
 
 if __name__ == '__main__':
