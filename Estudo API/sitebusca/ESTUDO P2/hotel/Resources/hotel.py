@@ -1,5 +1,5 @@
 from flask import Flask
-from flask_restful import Resource, Api
+from flask_restful import Resource, reqparse
 
 
 hoteis = [
@@ -47,31 +47,57 @@ hoteis = [
     }
 ]
 
+# Define uma classe Hoteis que herda da classe Resource
+
+
 class Hoteis(Resource):
+
+    argumento = reqparse.RequestParser()
+    argumento.add_argument('nome')
+    argumento.add_argument('estrelas')
+    argumento.add_argument('diarias')
+    argumento.add_argument('cidade')
+
+# Método GET para a classe Hoteis
     def get(self):
         return {'hoteis': hoteis}
-    
+
+
 class Hotel(Resource):
-    def get(self, hotel_id):
+    # Método para encontrar um hotel pelo ID
+    def find_hotel(hotel_id):
         for hotel in hoteis:
             if hotel['hotel_id'] == hotel_id:
                 return hotel
-        return{'massege': 'Hotel not found'}, 404 # not found
-    
 
+        return None
 
+    def get(self, hotel_id):
+        hotel = Hotel.find_hotel(hotel_id)
+        if hotel:
+            return hotel
+        return {'massege': 'Hotel not found'}, 404  # not found
 
     def post(self, hotel_id):
-        pass
+
+        dados = Hotel.argumento.parse_args()  # Analisa os argumentos da requisição usando o RequestParser
+        novo_hotel = {
+            "hotel_id": hotel_id,
+            "nome": dados['nome'],
+            "estrelas": dados['estrelas'],
+            "diarias": dados['diarias'],
+            "cidade": dados['cidade']
+        }
+        hoteis.append(novo_hotel)
+        return novo_hotel, 200
 
     def put(self, hotel_id):
+        dados = Hotel.argumento.parse_args()
+        hotel = Hotel.find_hotel(hotel_id)
+        if hotel:
+            hotel.update(novo_hotel) # Atualiza as informações do hotel com os novos dados
+
         pass
 
     def delete(self, hotel_id):
         pass
-
-
-
-
-
-

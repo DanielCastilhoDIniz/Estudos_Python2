@@ -8,3 +8,4 @@
 7. criar "hoteis".py" na pasta Resources
 8. criar classe Hotel e Hoteis em hoteis.py
 9. Em Hotel na classe Hotel crias os mestodos "get, post, put e delete"
+10.
