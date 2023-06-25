@@ -1,0 +1,1 @@
+Teste de gerador de hashes
